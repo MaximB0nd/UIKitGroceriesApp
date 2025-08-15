@@ -17,7 +17,15 @@ class CategoryView: UIView {
         return searchBar
     }()
     
-    
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.register(CategoryCardCell.self, forCellWithReuseIdentifier: "CategoryCardCell")
+        return collectionView
+    }()
     
     
     override init(frame: CGRect) {
@@ -38,7 +46,7 @@ class CategoryView: UIView {
 
 extension CategoryView {
     private func setupView() {
-        addSubViews(searchBar)
+        addSubViews(searchBar, collectionView)
     }
     
     private func style() {
@@ -51,6 +59,11 @@ extension CategoryView {
             searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
             searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 16),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8)
         ])
     }
 }
