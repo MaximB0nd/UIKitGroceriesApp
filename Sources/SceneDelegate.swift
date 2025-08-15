@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navController = UINavigationController()
         let router = Router(navigation: navController)
-        let rootController = WelcomeController(router: router)
+        let rootController = WelcomeViewController(router: router)
         
         navController.addChild(rootController)
         

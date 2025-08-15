@@ -1,44 +1,15 @@
 //
-//  WelcomeController.swift
-//  FirstUIKitProject
+//  WelcomeView.swift
+//  GroceriesApp
 //
 //  Created by Максим Бондарев on 15.08.2025.
 //
 
 import UIKit
 
-class WelcomeController: UIViewController {
-    
-    private let welcomeView = WelcomeView()
-  
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    var router: Router
-
-    init(router: Router) {
-        self.router = router
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-        layout()
-    }
-    
-    private func setup() {
-        view.addSubview(welcomeView)
-    }
-    
-    private func layout() {
-        welcomeView.pinToEdges(of: view)
-    }
-
-}
-
 class WelcomeView: UIView {
+    
+    var didTapStart: (() -> Void)?
     
     private lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView(image: Images.Welcome.background)
@@ -89,7 +60,7 @@ class WelcomeView: UIView {
     
     @objc
     func didTabButton() {
-        
+        didTapStart?()
     }
     
     override init(frame: CGRect) {
@@ -142,4 +113,3 @@ extension WelcomeView {
         ])
     }
 }
-
