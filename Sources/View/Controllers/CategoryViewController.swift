@@ -9,6 +9,8 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     
+    private let categoryView = CategoryView()
+    
     var router: Router
     
     init(router: Router) {
@@ -22,9 +24,21 @@ class CategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .red
+        setup()
+        layout()
+        setupNavigationController()
     }
     
+    private func setup() {
+        view.addSubview(categoryView)
+    }
 
+    private func layout() {
+        categoryView.pinToEdges(of: view)
+    }
+    
+    private func setupNavigationController() {
+        title = "Find Products"
+        navigationItem.setHidesBackButton(true, animated: false)
+    }
 }
